@@ -1,16 +1,28 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Sections" %>
+<h1> List of Sections</h1>
 
-<h1>Sections</h1>
-
-<div id="sections">
-  <% @sections.each do |section| %>
-    <%= render section %>
-    <p>
-      <%= link_to "Show this section", section %>
-    </p>
-  <% end %>
-</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Room</th>
+        <th>Time Slot</th>
+        <th>Subject</th>
+        <th>Show</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sections.each do |section| %>
+        <tr>
+          <td><%= section.name%></td>
+          <td><%= section.room%></td>
+          <td><%= section.time_slot%></td>
+          <td><%= section.subject.name%></td>
+          <td><%= link_to "Show this section", section %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <%= link_to "New section", new_section_path %>
