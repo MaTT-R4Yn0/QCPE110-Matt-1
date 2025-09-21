@@ -7,6 +7,7 @@
       <tr>
         <th>Name</th>
         <th>Teacher</th>
+        <th>Units</th>
         <th>Show</th>
       </tr>
     </thead>
@@ -15,6 +16,7 @@
         <tr>
           <td><%= subject.name%></td>
           <td><%= subject.teacher.name%></td>
+          <td><%= subject.number_of_units%></td>
           <td><%= link_to "Show this subject", subject %></td>
         </tr>
       <% end %>

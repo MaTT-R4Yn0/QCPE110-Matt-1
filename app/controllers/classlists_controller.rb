@@ -25,6 +25,16 @@ class ClasslistsController < ApplicationController
 
     respond_to do |format|
       if @classlist.save
+
+        # Add number of students to section
+        @classlist.section.increment!(:number_of_students)
+        # Add number of units to student
+        @classlist.student.increment!(:number_of_units, @classlist.section.subject.number_of_units)
+
+        # Calculate Student total assessment
+        totalAssessment = (@classlist.student.number_of_units * 2500) + 15000
+        @classlist.student.update(total_assessment: totalAssessment)
+
         format.html { redirect_to @classlist, notice: "Classlist was successfully created." }
         format.json { render :show, status: :created, location: @classlist }
       else
@@ -51,6 +61,15 @@ class ClasslistsController < ApplicationController
   def destroy
     @classlist.destroy!
 
+    # Subtract number of students to section
+    @classlist.section.decrement!(:number_of_students)
+    # Subtract number of units to student 
+    @classlist.student.decrement!(:number_of_units, @classlist.section.subject.number_of_units)
+
+    # Calculate Student total assessment
+    totalAssessment = (@classlist.student.number_of_units * 2500) + 15000
+    @classlist.student.update(total_assessment: totalAssessment)
+    
     respond_to do |format|
       format.html { redirect_to classlists_path, notice: "Classlist was successfully destroyed.", status: :see_other }
       format.json { head :no_content }

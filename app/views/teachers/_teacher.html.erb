@@ -15,13 +15,23 @@
   </p>
 
   <p>
+    <strong>Units:</strong>
+    <%= teacher.number_of_units %>
+  </p>
+
+  <p>
+    <strong>Monthly Salary:</strong>
+    <%= teacher.monthly_salary %>
+  </p>
+
+  <p>
     <strong>Status:</strong>
     <%= teacher.status %>
   </p>
 
   <p>
     <strong>Department:</strong>
-    <%= teacher.department_id %>
+    <%= teacher.department.name %>
   </p>
 
 </div>

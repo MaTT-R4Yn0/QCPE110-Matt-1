@@ -2,12 +2,13 @@
 
 <%= render @student %>
 
-<h3>List of Subjects:</h3>
+<h3>List of Subjects: </h3>
   <table>
     <thead>
       <tr>
         <th> Section </th>
         <th> Subject </th>
+        <th> Units </th>
         <th> Teacher </th>
       </tr>
     </thead>
@@ -16,6 +17,7 @@
         <tr>
           <td><%= classlist.section.name %></td>
           <td><%= classlist.section.subject.name %></td>
+          <td><%= classlist.section.subject.number_of_units %></td>
           <td><%= classlist.section.subject.teacher.name %></td>
         </tr>
       <% end %>

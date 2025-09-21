@@ -6,8 +6,10 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Year Level</th>
+        <th>Year</th>
         <th>Program</th>
+        <th>Units</th>
+        <th>Total Assessment</th>
         <th>Show</th>
       </tr>
     </thead>
@@ -17,6 +19,8 @@
           <td><%= student.name%></td>
           <td><%= student.year_level%></td>
           <td><%= student.program%></td>
+          <td><%= student.number_of_units%></td>
+          <td><%= student.total_assessment%></td>
           <td><%= link_to "Show this student", student %></td>
         </tr>
       <% end %>
