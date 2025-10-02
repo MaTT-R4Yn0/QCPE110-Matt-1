@@ -2,7 +2,10 @@
 
 <%= render @department %>
 
-<h3>List of Students:</h3>
+<h4><strong> Students: <%= @department.student_count %></h4> 
+<h4><strong> Employees: <%= @department.employee_count %></h4> 
+
+<h3>List of Students: </h3>
   <table>
     <thead>
       <tr>
@@ -22,7 +25,7 @@
     </tbody>
   </table>
 
-<h3>List of Teachers:</h3>
+<h3>List of Teachers: </h3>
   <table>
     <thead>
       <tr>
@@ -39,6 +42,28 @@
           <td><%= teacher.email %></td>
           <td><%= teacher.specialization %></td>
           <td><%= teacher.status %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<h3>List of Staff: </h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Monthly Salary</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @department.staffs.each do |staff| %>
+        <tr>
+          <td><%= staff.name %></td>
+          <td><%= staff.email %></td>
+          <td><%= staff.monthly_salary%></td>
+          <td><%= staff.status %></td>
           </tr>
       <% end %>
     </tbody>

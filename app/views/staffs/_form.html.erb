@@ -1,10 +1,10 @@
-<%= form_with(model: teacher) do |form| %>
-  <% if teacher.errors.any? %>
+<%= form_with(model: staff) do |form| %>
+  <% if staff.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
+      <h2><%= pluralize(staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
 
       <ul>
-        <% teacher.errors.each do |error| %>
+        <% staff.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -22,8 +22,8 @@
   </div>
 
   <div>
-    <%= form.label :specialization, style: "display: block" %>
-    <%= form.text_field :specialization %>
+    <%= form.label :monthly_salary, style: "display: block" %>
+    <%= form.text_field :monthly_salary %>
   </div>
 
   <div>
@@ -33,7 +33,7 @@
 
   <div>
     <%= form.label :department_id, "Department", style: "display: block" %>
-    <%= form.collection_select :department_id, Department.all, :id, :name, prompt: "Select a department"%>
+    <%= form.collection_select :department_id, Department.all, :id, :name, prompt: "Select a department" %>
   </div>
 
   <div>
