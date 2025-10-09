@@ -26,10 +26,11 @@ class StudentGuardiansController < ApplicationController
     respond_to do |format|
       if @student_guardian.save
 
-        #Add number of Students to Guardian
-        @student_guardian.student.increment!(:number_of_guardians)
-        #Add number of Gaurdians to Student
-        @student_guardian.guardian.increment!(:number_of_students)
+        #update counts of Students and Gaurdians
+        @student_guardian.student.update(number_of_guardians: @student_guardian.student.student_guardians.count)
+        @student_guardian.guardian.update(number_of_students: @student_guardian.guardian.student_guardians.count)
+        # @student_guardian.student.increment!(:number_of_guardians)
+        # @student_guardian.guardian.increment!(:number_of_students)
         
         format.html { redirect_to @student_guardian, notice: "Student guardian was successfully created." }
         format.json { render :show, status: :created, location: @student_guardian }
@@ -39,7 +40,7 @@ class StudentGuardiansController < ApplicationController
       end
     end
   end
-
+  
   # PATCH/PUT /student_guardians/1 or /student_guardians/1.json
   def update
     respond_to do |format|
@@ -56,12 +57,13 @@ class StudentGuardiansController < ApplicationController
   # DELETE /student_guardians/1 or /student_guardians/1.json
   def destroy
     @student_guardian.destroy!
-
-    #Subtract number of Students to Guardian
-    @student_guardian.student.decrement!(:number_of_guardians)
-    #Subtract number of Gaurdians to Student
-    @student_guardian.guardian.decrement!(:number_of_students)
-
+    
+    #update counts of Students and Gaurdians
+    @student_guardian.student.update(number_of_guardians: @student_guardian.student.student_guardians.count)
+    @student_guardian.guardian.update(number_of_students: @student_guardian.guardian.student_guardians.count)
+    # @student_guardian.student.decrement!(:number_of_guardians)
+    # @student_guardian.guardian.decrement!(:number_of_students)
+    
     respond_to do |format|
       format.html { redirect_to student_guardians_path, notice: "Student guardian was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
