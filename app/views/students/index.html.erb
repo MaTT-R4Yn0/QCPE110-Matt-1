@@ -1,10 +1,13 @@
-<div class="d-flex justify-content-between align-items-center text-white">
+<div class="d-flex justify-content-between align-items-center mb-2">
   <p class="fs-2 fw-bold mb-0">List of Students</p>
-  <%= link_to "New student", new_student_path, class: "btn btn-success" %>
+  <%= link_to new_student_path, class: "btn btn-success fs-5" do%>
+    <i class="bi bi-person-plus"></i>
+    New Student
+  <% end %>
 </div>
-<table class="table table-striped table table-bordered table table-hover">
+<table class="table table-striped table-bordered table-hover">
     <thead>
-      <tr class="table-">
+      <tr class="table-primary">
         <th>Name</th>
         <th>Year</th>
         <th>Program</th>
@@ -16,15 +19,24 @@
     <tbody>
       <% @students.each do |student| %>
         <tr>
-          <td><%= student.name%></td>
-          <td><%= student.year_level%></td>
-          <td><%= student.program%></td>
-          <td><%= student.number_of_units%></td>
-          <td><%= student.total_assessment%></td>
-          <td>
-            <%= link_to "Show", student, class: "btn btn-sm btn-outline-primary" %>
-            <%= link_to "Edit", edit_student_path(student), class: "btn btn-sm btn-outline-warning" %>
-            <%= link_to "Delete", student, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-danger" %>
+          <td style="width: 24%"><%= student.name%></td>
+          <td style="width: 10%"><%= student.year_level%></td>
+          <td style="width: 14%"><%= student.program%></td>
+          <td style="width: 10%"><%= student.number_of_units%></td>
+          <td style="width: 24%"><%= student.total_assessment%></td>
+          <td style="width: 18%">
+            <%= link_to student, class: "btn btn-sm btn-primary" do%>
+              <i class="bi bi-eye"></i>
+              Show
+            <% end %>
+            <%= link_to edit_student_path(student), class: "btn btn-sm btn-warning" do%>
+              <i class="bi bi-pencil-square"></i>
+              Edit
+            <% end %>
+            <%= button_to student, method: :delete, data: { turbo_confirm: false }, form: { data: { turbo: true }, class: "d-inline"}, class: "btn btn-sm btn-danger" do %>
+              <i class="bi bi-trash"></i>
+              Delete
+            <% end %>
           </td>
         </tr>
       <% end %>

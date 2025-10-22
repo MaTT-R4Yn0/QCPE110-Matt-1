@@ -1,22 +1,24 @@
-<div class="card mb-4 shadows-sm mt-3 ms-1 me-1 bg-dark-subtle text-dark-emphasis">
-  <div class="card-header bg-secondary text-white">
-    <h2 class="mb-0 fw-bold">
-      <%= @student.name %>
-    </h4>
+<div class="container-fluid m-1 bg-success-subtle text-center rounded-2 shadow">
+  <span class="fs-1 fw-bold"> Student Info </span>
+</div>
+<div class="card shadow mt-2 ms-1 me-1 p-2">
+  <div class="card-header pt-0 pb-2">
+    <h1 class="mb-0 fw-bold"><%= @student.name %></h1>
+    <p class="m-0"><%= @student.year_level %> | <%= @student.program %> | <%= @student.department.name %></p>
   </div>
 
-  <div class="card-body">
-    <p><strong> Year Level: </strong> <%= @student.year_level %></p>
-    <p><strong> Program: </strong> <%= @student.program %></p>
-    <p><strong> Department: </strong> <%= @student.department.name %></p>
+  <div class="card-body p-2">
     <p><strong> No. of Units: </strong> <%= @student.number_of_units %></p>
     <p><strong> Total Assessment: </strong> <%= @student.total_assessment %></p>
     <p><strong> No. of Guardians: </strong> <%= @student.number_of_guardians %></p>
   </div>
 
-  <h4 class="m-2 fw-bold"> List of Subjects: </h4>
+  <h4 class="m-1 fw-bold">
+    <i class="bi bi-book"></i>
+    List of Subjects: 
+  </h4>
   <table class="table table-bordered table-striped">
-    <thead class="table table-light">
+    <thead class="table table-primary">
       <tr>
         <th> Section </th>
         <th> Subject </th>
@@ -40,11 +42,15 @@
     <div>
       <%= link_to "Back to students", students_path, class: "btn btn-secondary ms-2" %>
     </div>
-    <div class="btn-group">
-      <%= link_to "Edit this student", edit_student_path(@student), class: "btn btn-warning" %>
-      <%= button_to "Destroy this student", @student, method: :delete, 
-          data: { confirm: "Are you sure you want to delete this student?" },
-          class: "btn btn-danger ms-2" %>
+    <div class="d-flex flex-row">
+      <%= link_to edit_student_path(@student), class: "btn btn-warning me-2" do%>
+        <i class="bi bi-pencil-square"></i>
+        Edit
+      <% end %>
+      <%= button_to student_path(@student), method: :delete, data: { turbo_confirm: false }, form: { data: { turbo: true } }, class: "btn btn-danger" do %>
+        <i class="bi bi-trash"></i>
+        Delete
+      <% end %>
     </div>  
   </div>
 </div>
