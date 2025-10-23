@@ -1,11 +1,22 @@
 <%= form_with(model: student) do |form| %>
   <div class="card shadow mt-2 ms-1 me-1">
-    <div class="card-header d-flex justify-content-between" style="background-color: #cfe2ff;">
-      <h2 class="mb-0 fw-bold"><%= student.new_record? ? "New Student" : "Edit Student" %></h2>
-      <div>
-        <%= link_to "Back to Students", students_path, class: "btn btn-secondary me-2" %>
-        <%= form.submit(class: "btn btn-success") %>
-      </div>
+    <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #cfe2ff;">
+      <% if student.new_record? %>
+        <h2 class="mb-0 fw-bold">New Student</h2>
+        <div>
+          <%= link_to "Back to Students", students_path, class: "btn btn-secondary me-2" %>
+          <%= form.submit(class: "btn btn-success") %>
+        </div>
+        <% else %>
+        <div class="d-flex align-items-center">
+          <h2 class="mb-0 fw-bold">Edit Student</h2>
+          <%= link_to "Show this Student", student, class: "btn btn-outline-primary ms-2" %>
+        </div>
+        <div>
+          <%= link_to "Back to Students", students_path, class: "btn btn-secondary me-2" %>
+          <%= form.submit(class: "btn btn-success") %>
+        </div>
+        <% end %>
     </div>
     <div class="card-body">
       <% if student.errors.any? %>
